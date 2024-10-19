@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, Amor!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffecf1;
+            font-family: 'Dancing Script', cursive;
+            color: #ff0066;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            margin: 20px;
+            border: 2px solid #ff66b2;
+            padding: 15px;
+            border-radius: 15px;
+            background-color: #fff5f8;
+            box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+        }
+        video {
+            width: 80%;
+            border-radius: 15px;
+        }
+        button {
+            background-color: #ff66b2;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff3385;
+        }
+        h1 {
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Feliz Cumpleaños, Mi Amor!</h1>
+    
+    <div class="container">
+        <video id="video1" controls>
+            <source src="videos/video1.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+        <p id="narration1"></p>
+    </div>
+    
+    <div class="container">
+        <video id="video2" controls>
+            <source src="videos/video2.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+        <p id="narration2"></p>
+    </div>
+
+    <button onclick="startNarration()">Reproducir Narración</button>
+
+    <script>
+        const narrationText = [
+            "Este es el primer video que elegí para ti, lleno de recuerdos hermosos que hemos vivido juntos.",
+            "Y este segundo video muestra lo mucho que te amo, y cómo cada día a tu lado es una bendición."
+        ];
+
+        function startNarration() {
+            const speech = new SpeechSynthesisUtterance();
+            speech.lang = 'es-ES';
+
+            let index = 0;
+            speech.text = narrationText[index];
+
+            speechSynthesis.speak(speech);
+
+            speech.onend = function() {
+                index++;
+                if (index < narrationText.length) {
+                    speech.text = narrationText[index];
+                    speechSynthesis.speak(speech);
+                }
+            };
+        }
+    </script>
+</body>
+</html>
